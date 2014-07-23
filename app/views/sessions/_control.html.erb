@@ -1,0 +1,15 @@
+<div id="login_status">
+<% if current_user.nil? %>
+		<% form_tag session_path do -%>
+			<span style="float:left;">
+				<%= text_field_tag('login', 'Login', :size => 10) %> &nbsp
+			</span>
+			<span style="float:right;">
+				<%= password_field_tag 'password', 'Password' ,:size => 10 %>&nbsp<%= submit_tag 'Log in' %>
+				
+		<% end -%>
+<!--/login-form-->
+<% else %>
+	Inbox <%= link_to ( '(' + @current_user.unread_count.to_s + ')', :controller => 'messages', :action => 'index')%> | My Looks <%= link_to( '(' + @current_user.looks.count.to_s + ')', :controller => 'look', :action => 'manage')%><!-- > | <%= link_to('Sign Out', logout_path)%> -->
+<% end %>
+</div>

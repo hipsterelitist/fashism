@@ -1,0 +1,36 @@
+<% if !current_user.nil? %>
+<div id="comment_column">
+<div class="add_comment_work" id="comment_form">
+	<% remote_form_for :comment, :url => {:controller => 'comments', :action => 'create'} do |f| -%>
+		<div class="field">
+			<%= image_tag('../images/ui/title_comment_looks.gif')%>
+			<%= f.text_area :body, :cols => 40, :rows => 8 %>
+			<%= hidden_field(:look, :id) %>
+		</div>
+		<div class="submit">
+			<%= image_submit_tag "../images/ui/btn_post.gif" %>
+		</div>
+	<% end %>
+</div><!--/comment-form-->
+<% end %>
+<% if comments != nil %>
+	<% for comment in comments %>
+	<div class="comment" id="comment_<%= comment.id.to_s %>">
+		<div class="comment_author">
+			<%= comment_vote_image(comment)%>
+			<%= comment.user.login.to_s %><br/>
+			<span class="comment_date">submitted <%= distance_of_time_in_words(comment.created_at, Time.now)%> ago</span>
+		</div>
+		<div class="comment_body">
+			<div class="left_quote"></div>
+			<div class="comment_text">
+				<%= comment.body %>
+			</div>
+			<div class="right_quote"></div>
+		</div>
+	</div>
+	<% end %>
+<% end %>
+<%= will_paginate comments%>
+<div class="clear"></div>
+</div>

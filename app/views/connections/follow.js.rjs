@@ -1,0 +1,1 @@
+page.replace_html "follow-button-" + @user.login.to_s, "You are now following this user."

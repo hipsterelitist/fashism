@@ -1,0 +1,9 @@
+<li style="float: right"><a href="#">Menu</a>
+	<ul style="z-index:1000;">
+		<li><%= link_to("Inbox" + " (" + @current_user.unread_count.to_s + ")",  :controller => 'messages', :action => 'index')%></li>
+		<li><%= link_to("Edit your profile", :controller => 'profile', :action => 'edit') %></li>
+		<li><%= link_to("Upload a look", :controller => 'look', :action => 'new') %></li>
+		<li><%= link_to("Manage Looks", :controller => 'look', :action => 'manage') %></li>
+		<li><%= link_to("Settings", settings_path)%>
+	</ul>
+</li>

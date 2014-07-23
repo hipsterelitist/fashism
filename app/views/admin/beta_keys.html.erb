@@ -1,0 +1,25 @@
+So like, here is how it works.<br/><br/>  
+<b>Key</b> is the actual key used. <br/>
+<b>Uses</b> are how many registrations the key has remaining.<br/>
+<b>Total</b> is the original total. <br/>
+<b>Views</b> are how many times the key has been used to look at the site (includes registrations).<br/><br/>
+<h3>Make a <%= link_to("new key", :action => "new_key") %>?</h3><br/>
+<table>
+	<tr>
+		<td><b>KEY</b></td>
+		<td><b>Uses</b></td>
+		<td><b>Total</b></td>
+		<td><b>Views</b></td>
+		<td><b>Notes</b></td>
+		<td></td>
+	</tr>
+<% for key in @beta_keys %>
+	<tr>
+		<td><%= key.key %></td>
+		<td><%= key.uses %></td>
+		<td><%= key.total %></td>
+		<td><%= key.views %></td>
+		<td><%= key.notes %></td>
+		<td> - <%= link_to("Edit", :action => 'edit_key', :id => key.id) %>?</td>
+	</tr>
+<%end%>

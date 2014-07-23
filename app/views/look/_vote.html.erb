@@ -1,0 +1,6 @@
+<div id="yes_or_no">
+	<%= image_tag("../images/layout/does_it_work.png")%><br/>
+	<span id="choices" class="options">
+		<%= link_to_remote(image_tag("../images/layout/yes.png"), :url => {:controller => 'vote', :action => 'create', :look_id => @look.id, :score => 1}, :method => "post")%><%= link_to_remote(image_tag("../images/layout/no.png"), :url => {:controller => 'vote', :action => 'create', :score => 0, :look_id => @look.id}, :method => "post")%>
+	</span>
+</div>

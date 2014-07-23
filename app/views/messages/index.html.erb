@@ -1,0 +1,7 @@
+<% @page_title = "Inbox"%>
+<div style="float:right;font-size:16px;padding:10px;"><%= link_to("Compose new", :action => 'new') %>?</div>
+<div class="content">
+	<% for message in @messages%>
+		<%= render :partial => 'message_link', :locals => { :message => message}%>
+	<% end %>
+</div>

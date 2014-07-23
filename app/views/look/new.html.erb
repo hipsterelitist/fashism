@@ -1,0 +1,33 @@
+<% @page_title = "Upload a look" %>
+<div class="content" style="min-height:400px;">
+	<div style="display: block; position: relative; float: right; clear: left;">
+		<%= error_messages_for :look, :photo %>
+	</div>
+	<div style="padding: 10px;">
+	<% form_for(@look, :method => 'post', :url => {:action => "create"}, :html => {:multipart => true}) do |f| %>
+		<div class="field">
+			<label for="title">Title</label>
+			<%= f.text_field :title %>
+		</div>
+		<div class="field">
+			<label for="description">Tell us about it</label>
+			<%= f.text_area :description, :size => '20' %>
+		</div>
+		<div class="field">
+			<label for="location">Location</label>
+			<%= f.text_field :location %>
+		</div>
+		<div class="field">
+			<label for="store">Store</label>
+			<%= f.text_field :store %>
+		</div>
+		<div class="field">
+			<label for="photo_file">Image</label>
+			<%= file_field_tag :photo_file %>
+		</div>
+		<div class="submit">
+			<%= submit_tag 'Create' %>
+		</div>
+	<% end %>
+	</div>
+</div>

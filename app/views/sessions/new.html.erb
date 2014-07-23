@@ -1,0 +1,28 @@
+<% @page_title = "Login" %>
+<div align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="center">
+
+<div id="login-form">
+	<% form_tag session_path do -%>
+		<div class="field">
+			<label for="login">Login</label>
+			<%= text_field_tag 'login' %>
+		</div>
+		<div class="field">
+			<label for="password">Password</label>
+			<%= password_field_tag 'password' %>
+		</div>
+		<!--
+			<label for="remember_me">Remember me:</label>
+			<%= check_box_tag 'remember_me' %>
+		-->
+		<div class="submit">
+			<%= submit_tag 'Log in' %>
+		</div><br/>
+	<% end -%>or did you <%= link_to("forget", :controller => "passwords", :action => "new") %>?
+</div><!--/login-form-->
+
+</tr></td>
+</table>
+</div>

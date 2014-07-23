@@ -1,0 +1,4 @@
+page.insert_html :bottom, 'gallery_items', { :partial => 'galleries/added', :locals => { :added_item => @gallery_item} }
+page.visual_effect :highlight, "gallery_items", :duration => 2
+page.remove "add_look-#{@gallery_item.look.id}"
+

@@ -1,0 +1,12 @@
+Key is the key itself that will be used to provide access<br/>
+Notes is where you should put info, like who the key is for, etc<br/>
+Uses are the total number of registrations for a key<br/><br/>
+Keys must be unique, this will be enforced by the application.<br/><br/>
+	<%= error_messages_for :betakey %>
+New beta key:
+<% form_for :betakey, :url => { :action => 'create_key' } do |f| -%>
+	KEY - <%= f.text_field :key %><br/>
+	Notes - <%= f.text_field :notes %><br/>
+	Uses - <%= f.text_field :uses %><br/>
+	 <%= submit_tag 'Create Key' %>
+<% end %>

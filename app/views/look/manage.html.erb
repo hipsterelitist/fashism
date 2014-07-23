@@ -1,0 +1,16 @@
+<% @page_title = "Managing your looks" %>
+<div id="results">
+	<%= will_paginate @looks %>
+<div class="clearer"></div>
+		<% for look in @looks %>
+		<div style="float:left;margin:25px;text-align:center;height:200px;">
+			<%= link_to(photo_for(look, :thumb), :action => 'view', :id => look.id) %>
+			<div class="rating"><%= percentage(look) %> | <%= look.title %></div>
+				<%= link_to ("View", :action => 'view', :id => look.id) %> | <%= link_to("Edit", :action => 'edit', :id => look.id) %> | <%= link_to("Delete", :action => 'destroy_look', :id => look.id)%>
+		</div>
+		<% end %>
+	<div class="clear"></div>
+</div>
+
+			
+			

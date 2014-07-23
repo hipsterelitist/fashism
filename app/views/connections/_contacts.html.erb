@@ -1,0 +1,4 @@
+<% for contact in contacts %>
+	<div style="height:50px;font-size:20px;">
+	<%= image_tag(contact.icon)%> - <span style="font-size:20px;"><%= link_to(contact.login, profile_url(:user_id => contact.login))%> |</span> <%= render :partial => 'connections/follow', :locals => { :user => contact }%></div>
+<% end %>

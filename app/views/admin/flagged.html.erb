@@ -1,0 +1,5 @@
+<% if flagged != nil%>
+<% for flagged in @flagged %>
+	<%= link_to(flagged.type, :controller => flagged.type, :action => 'view', :id => flagged.item_id) %> reported by	
+	<%= link_to(User.find_by_id(flagged.user_id).login.to_s, :controller => 'user', :action => 'view', :id => flagged.user_id) %>
+<% end %>

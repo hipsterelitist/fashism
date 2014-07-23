@@ -1,0 +1,6 @@
+<span id="gallery-add"><% for gallery in @galleries %>
+	<%= link_to_remote(gallery.title, :url => { :controller => 'gallery', :action => 'add', :gallery => gallery.id, :look => @look.id }) %>
+<% end %><br/>
+<% if @look.gallery != nil %>
+This look is currently featured in <%= link_to(@look.gallery.title, :controller => 'gallery', :action => 'view', :id => @look.gallery.id) %> - <%= link_to_remote("Remove", :url => { :controller => 'gallery', :action => 'remove', :gallery => gallery.id, :look => @look.id }) %>?
+<% end %></span>

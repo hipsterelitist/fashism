@@ -1,0 +1,9 @@
+<% form_tag session_path do -%>
+	<div class="fields">
+		<div class="clearer"></div>
+		<div class="f_left"><%= text_field_tag 'login', nil, :class => "text" %></div>
+		<div class="f_left"><%= password_field_tag 'password', nil, :class => "text"  %></div>
+		<div class="f_left"><%= submit_tag 'login', :class => "submit" %></div>
+		<div class="clearer"></div>
+	</div>
+<% end -%>

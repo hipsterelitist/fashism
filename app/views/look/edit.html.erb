@@ -1,0 +1,39 @@
+<% @page_title = "Edit your look" %>
+<div style="display: block; position: relative; float: right; clear: left; width:300px;">
+	<div class="clearer"></div>
+	<%= error_messages_for :look, :photo %>	<br/>
+	<table width="270">
+	<% for photo in @look.photos%>
+	<tr><td>
+		<%= image_tag(photo.public_filename(:thumb), :style => "vertical-align:top; padding:2px;")%>
+	</td><td>
+		<% if @look.default_photo.id == photo.id%>
+			This is your default photo.<br/>
+		<% else %>
+			Make this the <%= link_to("default photo", :action => "make_default", :pid => photo.id) %> for your look?<br/>
+		<% end %>
+		<br/><%= link_to("Delete", :action => "destroy_photo", :pid => photo.id) %> this photo?<br/></td></tr>
+	<% end %>
+	</table>
+
+</div>
+	<div class="content" style="min-height:550px;">
+	<% form_for :look, @look, :method => 'post', :url => {:action => "update", :id => @look.id}, :html => { :multipart => true} do |f| %>
+		<table>
+		<tr><td>Title:</td><td><%= f.text_field :title%></td></tr>
+		<tr><td>Location:</td><td> <%= f.text_field :location%></td></tr>
+		<tr><td>Store:</td><td><%= f.text_field :store %></td></tr>
+		<tr><td>Description:</td><td><%= f.text_field :description %></td></tr>
+		<tr><td>Add Image:</td><td><%= file_field_tag :photo_file %></td></tr>
+		</table>
+	 <%= submit_tag 'Update' %>
+	<% end %>
+	<p>
+		<%= render :partial => 'shared/viewmenu', :locals => { :look => @look }%></p>
+	<p></p><h3>Tags:</h3>
+		<div id="taglist" style="width:270px"><%= render :partial => 'tags/edit_tag', :collection => @look.tag_list %></div>Click tags to remove.<p></p>
+		<% remote_form_for(:tag, :url => {:controller => 'tags', :action => 'add_tags', :look_id => @look.id }) do |f| %>
+			<%= f.text_field :tag_list %>
+			<%= submit_tag 'Add Tags' %><br/>Enter desired tags separated by commas.
+		<% end %>
+</div>

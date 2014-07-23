@@ -1,0 +1,2 @@
+page.replace_html "favorite_status", "Added to favorites"
+page.visual_effect :highlight, "favorite_status", :duration => 2

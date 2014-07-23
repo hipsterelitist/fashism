@@ -1,0 +1,14 @@
+<% @page_title = @message.subject%>
+<div class="content">
+
+	<h3><%= @message.subject %></h3>
+	Between <b><%= link_to("You", :controller => "profile", :action => "view", :user => @current_user.login)%></b> and <b><%= link_to(@message.other_user(@current_user).login, :controller => "profile", :action => "view", :user => @message.other_user(@current_user).login) %></b>
+	<hr color="#EAEAEA"/>
+	<% for item in @messages %>
+		<%= render :partial => 'display_message', :locals => { :message => item}%>
+	<% end %>
+	<div id = "reply">
+		<%= link_to_remote("Reply", :url => {:action => 'reply', :parent => @messages.last.id}) %>
+	</div>
+</div>
+	

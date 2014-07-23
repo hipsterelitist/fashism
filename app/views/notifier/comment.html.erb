@@ -1,0 +1,14 @@
+Hey <%= @user.login%>,<br/><br/>
+
+
+<%= @comment.name %> had this to say about your <%= link_to("look", :controller => 'look', :action => 'view', :id => @look.id, :only_path => false, :host => "www.fashism.com") %>:<br/><br/>
+<%= @comment.body %><br/><br/>
+
+Perhaps you should set them straight?<br/><br/>
+
+
+Cheers,<br/>
+Fashism Staff.<br/><br/>
+
+--<br/>
+You can change your notification settings by <%= link_to("logging in", :controller => 'session', :action => 'new', :only_path => false, :host => "www.fashism.com") %> and using the <%= link_to("settings", "http://www.fashism.com/settings" ) %> page.

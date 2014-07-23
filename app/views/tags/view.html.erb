@@ -1,0 +1,50 @@
+<% @page_title = "Browsing Looks"%>
+<div class="content">
+
+	<h3>Recently Added</h3>
+	Sort: <%= link_to("Recent", :overwrite_params => {:sort => 'recent'}) %>,
+	<%= link_to("Top", :overwrite_params => {:sort => 'top' }) %><br/>
+
+	Per page: <%= link_to("10", :overwrite_params => {:perpage => '10'}) %>, 
+	<%= link_to("50", :overwrite_params => {:perpage => '50'}) %><br/>
+	<%= will_paginate @looks %><br/>
+	
+</div><!--/content-->
+
+<div class="clearer"></div>
+
+<div class="boxlist">
+<div class="clearer"></div>
+
+	<div align="center">
+	<table border="0" width="750" cellspacing="0" cellpadding="0">
+	<tr><td align="center">
+	
+	<% for look in @looks %>
+	<div class="item">
+		<div class="frame">
+		<table height="132" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+			<div class="display">
+				<div class="image">
+					<%= link_to(photo_for(look, :thumb), :controller => 'look', :action => 'view', :id => look.id) %>
+				</div>
+				<div class="rating"><%= percentage(look) %></div>
+			</div>
+		</td></tr>
+		</table>
+		</div><!--/frame-->
+		<div class="tab">
+		<div class="clearer"></div>
+			<div class="info"><%= look.title %></div>
+		<div class="clearer"></div>
+		</div><!--/tab-->
+	</div><!--/item-->
+	<% end %>
+	
+	</tr></td>
+	</table>
+	</div>
+
+<div class="clearer"></div>
+</div><!--/boxlist-->

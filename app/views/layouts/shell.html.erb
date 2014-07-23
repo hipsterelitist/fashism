@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<%= stylesheet_link_tag "reset" %>
+	<%= stylesheet_link_tag "shell" %>
+	<%= stylesheet_link_tag "jquery.jgrowl" %>
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag "jquery.jgrowl" %>
+	<!--[if IE]>
+		<%= stylesheet_link_tag "ie" %>
+	<![endif]-->
+
+	<title>Fashism - <%= @page_title || "Fashion 2.1.2" %> </title>
+</head>
+<body>
+<!-- main container for site -->
+<div class="main">
+	<!-- left button set -->
+	<div class="left_button_set">
+	</div>
+	<!-- //left button set -->
+
+	<!-- main content box -->
+	<div class="content">
+	
+		<!-- top nav items -->
+		<div class="header">
+			<a href="#"><h1>Fashism</h1></a>
+			<div class="stats">my looks <a href="#">(2)</a> | my votes <a href="#">(12)</a></div>
+			<%= link_to(' ', {:controller => 'look', :action => 'random'}, :id => 'does_it_work' ) %>
+			<%= link_to(' ', {:controller => 'browse'}, :id => 'which_is_better') %>									<%= link_to(image_tag('../images/ui/btn_upload_style.gif', :class => 'upload_style'), :controller => 'look', :action => 'new')%>
+		</div>
+		
+		<!-- border container -->
+		<div class="content_borders">
+		<!-- IE6 container -->
+		<div class="ie_container">
+			
+		<%= render :partial => 'browse/browser', :locals => {:looks => Look.recent(15), :page => 1 }%>
+		<!-- //top nav items -->
+		
+		<%= @content_for_layout %>
+		
+		<!-- footer -->
+		<p class="footer">All contents copyright &copy; 2009 Fashism, LLC. All Rights Reserved</p>
+		<!-- //footer -->
+		</div>
+		</div></div>
+	<!-- //main content box -->
+	<div class="right_button_set">
+		<%= link_to('#', { :controller  => 'look', :action => 'next', :id => @look || '1'}, {:id => 'next_look'}) %>
+		<%= link_to('#', {:controller => 'browse', :action => 'index', :sort => 'top'}, :class => 'btns_right_col btn_hottest_looks' )%>
+				<%= link_to('#', {:controller => 'browse', :action => 'index', :sort => 'recent'}, :class => 'btns_right_col btn_just_posted' )%>
+						<%= link_to('#', {:controller => 'browse', :action => 'index', :sort => 'comments'}, :class => 'btns_right_col btn_most_discussed' )%>
+	</div>
+</div>
+<!-- notification --><div id="flashes">
+<% if flash[:warning] != nil %>
+	<script type="text/javascript">
+	$.jGrowl("<%=  escape_javascript h(flash[:warning])%>", {theme: 'warning'});
+	</script>
+<% end%>
+<% if flash[:notice] != nil %>
+	<script type="text/javascript">
+	$.jGrowl("<%= escape_javascript h(flash[:notice]) %>", {theme: 'notice'});
+	</script>
+<% end%></div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<% for comment in @comments %>
+	<p>
+	<b><%= comment.name %></b> said:<br/><%= comment.body %><br/><i>about an <%= time_ago_in_words(comment.created_at)%> ago in regard to</i> <%= link_to(comment.look.title, :controller => 'look', :action => 'view', :id => comment.look_id) %><br/>
+	</p><hr/>
+<% end %>

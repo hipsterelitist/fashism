@@ -1,0 +1,3 @@
+<% for gallery in @galleries %>
+	<%= link_to(image_tag(gallery.thumb_url), :action => 'view', :id => gallery.id)%><br/>
+<% end %>

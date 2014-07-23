@@ -1,0 +1,15 @@
+development:
+  bucket_name: fashism_dev
+  access_key_id: 1S668M04C1BREX80V4R2
+  secret_access_key: SJJdenvtT8cb9xMrQMew0U5hINeAJG/B3ogxFmqg  
+
+test:
+  bucket_name: fashion_test
+  access_key_id: 
+  secret_access_key: 
+
+production:
+  bucket_name: images.fashism.com
+  access_key_id: 1S668M04C1BREX80V4R2
+  secret_access_key: SJJdenvtT8cb9xMrQMew0U5hINeAJG/B3ogxFmqg  
+  virtual_host: true

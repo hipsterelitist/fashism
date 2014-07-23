@@ -1,0 +1,2 @@
+page.replace "popup_content", { :partial => 'comment/created', :locals => { :voted_look => @comment.look } }
+

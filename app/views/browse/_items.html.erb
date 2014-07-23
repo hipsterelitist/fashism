@@ -1,0 +1,10 @@
+<% for look in looks %>
+	<li style="display:inline;">
+		<div class="browser_image" style="position:relative;float:left;margin-bottom:20px;display:inline;border:1px solid #fff;background-color:#333;" id="browse-look <%= look.id %>">
+		<%= link_to(photo_for(look, :mini), :controller => 'look', :action => 'view', :id => look.id)%>
+			<span class="score" style="font-family:georgia;font-size:15px;color:#9C0015;position:absolute;height:30px;width:30px;top:10px;right:5px;border:1px dashed #9C0015;background-color:#fff;text-align:center;line-height:30px;">
+				<%= percentage(look) %>
+			</span>
+		</div>
+	</li>
+<% end %>

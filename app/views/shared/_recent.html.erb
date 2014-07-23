@@ -1,0 +1,39 @@
+<div class="infotext">
+<div class="nw"><div class="ne"><div class="sw"><div class="se">
+<div class="clearer"></div>
+	<div class="inner">
+		<strong>Recently Added</strong>
+	</div>
+<div class="clearer"></div>
+</div></div></div></div>
+</div>
+
+<div class="clearer"></div>
+	
+<div class="boxlist">
+<div class="clearer"></div>
+	<% for look in Look.recent %>
+	<div class="item">
+		<div class="frame">
+		<table height="132" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+			<div class="display">
+				<div class="image">
+					<%= link_to(photo_for(look, :thumb), :controller => 'look', :action => 'view', :id => look.id) %>
+				</div>
+				<div class="rating" id="rating-tag-<%= look.id %>"><%= percentage(look) %></div>
+			</div>
+		</td></tr>
+		</table>
+		</div><!--/frame-->
+		<div class="tab">
+		<div class="clearer"></div>
+			<div class="info"><%= look.title %></div>
+		<div class="clearer"></div>
+		</div><!--/tab-->
+	</div><!--/item-->
+	<% end %>
+<div class="clearer"></div>
+</div><!--/boxlist-->
+
+<div class="clearer"></div>

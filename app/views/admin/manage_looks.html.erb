@@ -1,0 +1,9 @@
+<table><tr><td>ID</td><td>Title</td><td>Edit</td><td>Destroy [CAN'T BE UNDONE!]</td></tr>
+<% for look in @looks%>
+	<tr>
+		<td><%= look.id %></td>
+		<td><%= link_to(look.title, :controller => 'look', :action => 'view', :id => look.id) %></td>
+		<td>Edit</td>
+		<td><%= link_to("Destroy", :action => 'destroy_look', :destroy_id => look.id) %></td>
+	</tr>
+<% end %>

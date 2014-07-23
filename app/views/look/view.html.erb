@@ -1,0 +1,50 @@
+<% @page_title = @look.title || "You're looking at a look..."%>
+<!-- does it work question -->
+<div class="does_it_work_question">
+	<div class="question_text">
+		<h2><%= @look.title %></h2>
+		<p><%= @look.description %></p>
+			<% if @look.user != nil%>
+				<%= link_to(' - ' + @look.user.login, profile_url(:user_id => @look.user.login), :class => 'question_user') %>
+			<% else %>
+				- anonymous
+			<% end %>
+		</a>
+	</div>
+	<div class="main_rating"><%= number_to_percentage(@look.score).to_i %><span><span>%</span></span></div>
+</div>
+<!-- //does it work question -->
+
+<!-- does it work left column -->
+<div class="does_it_work_left">
+	<!-- does it work look -->
+	<div class="does_it_work_photo", id="display_photo">
+		<%= image_tag(@default_photo, :class => 'look_image', :alt => @look.title)%>
+	</div>
+	<!-- //does it work look -->
+	<!-- other looks by user -->
+	<div class="other_looks_from">
+		<div>other looks</div>
+		<% for photo in @look.photos %>
+			<%= link_to_remote(image_tag(photo.public_filename(:thumb)), :url => {:action => 'display_image', :photo => photo.id} )%>
+		<% end %>
+	</div>
+	<!-- //other looks by user -->
+</div>
+<!-- //does it work left column -->
+
+<!-- does it work right column -->
+<div class="does_it_work_right">
+
+	<!-- love or hate -->
+	<div class="love_hate_buttons">
+		
+	<%= link_to_remote('#', :url => {:controller => 'vote', :action => 'create', :look_id => @look.id, :score => 1}, :method => "post", :html => {:id => 'love_button'}) %>
+		<%= link_to_remote('#', :url => {:controller => 'vote', :action => 'create', :look_id => @look.id, :score => 0}, :method => "post", :html => {:id => 'hate_button'}) %>
+	</div>
+	<!-- //love or hate -->
+
+	<%= render :partial => 'comments', :locals => {:comments => @comments}  %>
+	
+</div>
+<!-- //does it work right column -->

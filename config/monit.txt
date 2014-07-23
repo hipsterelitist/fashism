@@ -1,0 +1,27 @@
+
+set daemon 30
+set logfile "/home/cfrance/public_html/fashion/trunk/log/monit.log"
+set alert admin@fashism.com
+set httpd port 9111 allow localhost
+
+
+
+
+check process mailer_fetcher
+        with pidfile "/home/cfrance/public_html/fashion/trunk/log/MailFetcherDaemon.pid"
+        start program = "RAILS_ENV=production /home/cfrance/public_html/fashion/trunk/script/mail_fetcher start"
+        stop program = "RAILS_ENV=production /home/cfrance/public_html/fashion/trunk/script/mail_fetcher stop"
+        if cpu > 90% for 4 cycles then restart
+
+check process starling
+		with pidfile /home/cfrance/public/fashion/trunk/tmp/pids/starling.pid
+		start program = "starling -d -P /home/cfrance/public_html/fashion/trunk/tmp/pids/starling.pid -q /home/cfrance/public_html/fashion/trunk/log/"
+		stop program = "starling stop"
+		if cpu > 80% for 4 cycles then alert
+		if cpu > 90% for 4 cycles then restart
+		
+check process workling
+		with pidfile /home/cfrance/public/fashion/trunk/log/workling.pid
+		start program with "/home/cfrance/public_html/fashion/trunk/script/workling_client start"
+		stop program = "/home/cfrance/public_html/fashion/trunk/script/workling_client stop"
+		if cpu > 90% for 4 cycles then restart

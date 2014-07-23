@@ -1,0 +1,15 @@
+==Can you beileve Rails apps used to be written like this?
+
+This isn't meant as a code sample... it was written over seven years ago (Rails 2.3.2!!!)
+
+It is meant to provide a bit of perspective on the evolution of Rails as a platform,
+what things were like before the rise of the cloud and some really awesome gems, 
+and how easy it once was to raise money (this was the MVP that spawned a million dollar seed
+round and served as a production server for at least a year.)
+
+Obviously, its hard to imagine something like this being used in production today
+not just because of the outdated technology stack, but because of the quality of the code and the 
+number of ad hoc solutions. It really is amazing to see how the ecosystem arounds rails and application
+development in general has matured. 
+
+Anyway, take a look and wonder.

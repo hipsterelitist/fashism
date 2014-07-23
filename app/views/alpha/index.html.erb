@@ -1,0 +1,22 @@
+<div style="width:390px;text-align:left;margin-left:auto;margin-right:auto;padding-bottom:20px;">
+	<h2>Welcome to the Fashism friends and family beta.</h2>
+
+	<div style="margin-bottom: 10px;">
+		Please enter your access code:
+		<% form_for :betakey, :url => { :controller => 'alpha', :action => "authorize" } do |f| -%>
+				<%= f.text_field :key %>
+				<%= submit_tag "Join the party." %>
+		<% end %>
+	</div>
+	<div>
+		or login
+		<% form_tag session_path do -%>
+			<%= text_field_tag 'login' %>
+			<%= password_field_tag 'password' %>
+			<%= submit_tag 'Login' %>
+		<% end -%>
+	</div>
+	<div>
+		If you'd like to join the revolution, please <%= mail_to("info@fashism.com", "contact", :subject => "invite request") %> us.
+	</div>
+</div>

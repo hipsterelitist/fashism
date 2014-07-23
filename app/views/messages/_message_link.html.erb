@@ -1,0 +1,38 @@
+<% if @current_user == message.sender%>
+	<div>
+		<table>
+			<tr>
+				<td width="200px">
+					<%= link_to(message.receiver.login, profile_url(:user_id => message.receiver.login)) %><br/>
+					<span class="fine_print"><%= time_ago_in_words(message.created_at) %> ago</span>
+				</td>
+				<td>
+					<%= link_to(message.subject, :action => 'view', :id => message.id)%><br/>
+					<span class="fine_print"><%= h(message.body.to_s[0..55].gsub(%r{</?[a-zA-Z].*?>}, ''))%>...</span>
+				</td>
+			</tr>
+		</table>
+		</div>
+<% else %>
+
+<% if message.unread %>
+	<div style="background-color:#DEEEEE">
+<% else %>
+	<div>
+<%end%>
+
+<table>
+	<tr>
+		<td width="200px">
+			<%= link_to(message.sender.login, profile_url(:user_id => message.sender.login)) %><br/>
+			<span class="fine_print"><%= time_ago_in_words(message.created_at) %> ago</span>
+		</td>
+		<td>
+			<%= link_to(message.subject, :action => 'view', :id => message.id)%><br/>
+			<span class="fine_print"><%= h(message.body.to_s[0..55].gsub(%r{</?[a-zA-Z].*?>}, ''))%>...</span>
+		</td>
+	</tr>
+</table>
+</div>
+<% end %>
+<hr color="#EAEAEA"/>

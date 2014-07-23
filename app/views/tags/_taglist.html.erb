@@ -1,0 +1,8 @@
+<span id="taglist">
+	<% if @look.tag_list.length > 0 %>
+		Tagged:
+		<% for tag in @look.tag_list %>
+			<%= link_to(tag, :controller => 'tags', :action => 'view', :id => tag)%>,
+		<% end %>
+	<% end %>
+</span>

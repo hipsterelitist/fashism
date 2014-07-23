@@ -1,0 +1,27 @@
+development:
+  type: imap
+  server: imap.gmail.com
+  port: 993
+  use_login: true
+  ssl: true
+  processed_folder: processed
+  error_folder: broken
+  username: test@fashism.com
+  password: cookies
+  
+test:
+  type: pop
+  server: localhost
+  username: username
+  password: password
+  
+production:
+    type: imap
+    server: imap.gmail.com
+    port: 993
+    use_login: true
+    ssl: true
+    processed_folder: processed
+    error_folder: broken
+    username: import@fashism.com
+    password: cookies1066

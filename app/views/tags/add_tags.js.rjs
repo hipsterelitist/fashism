@@ -1,0 +1,4 @@
+for tag in @tags
+  page.insert_html :bottom, 'taglist', { :partial => 'edit_tag', :locals => {:edit_tag => tag } }
+end
+  page.visual_effect :highlight, "taglist", :duration => 2

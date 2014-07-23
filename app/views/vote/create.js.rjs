@@ -1,0 +1,4 @@
+page.replace_html "score", styled_percentage(@look)
+page.visual_effect :grow, "score", :duration => '.5'
+page.insert_html :before, 'footer', :partial => 'shared/flashes'
+page.remove "yes_or_no"

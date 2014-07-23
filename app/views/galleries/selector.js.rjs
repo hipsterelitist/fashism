@@ -1,0 +1,1 @@
+page.replace 'gallery-add', { :partial => 'gallery/list', :locals => { :add_look => @look } }

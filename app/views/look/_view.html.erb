@@ -1,0 +1,80 @@
+<div class="boxitem">
+<div class="clearer"></div>
+	<div align="center">
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr><td align="center">
+		<div class="item-view">
+		<div class="clearer"></div>
+			<div class="tab">
+			<div class="clearer"></div>
+			
+				<div class="rating">
+				<div class="nw"><div class="ne"><div class="sw"><div class="se">
+				<div class="clearer"></div>
+					<div class="inner">
+						<%= percentage(@look) %>
+					</div>
+					
+				<div class="clearer"></div>
+				</div></div></div></div>
+				</div><!--/rating-->
+				
+				<div class="info">
+					Vote Count:	<%= @look.vote_count %><br />
+					Others: <%= @look.flavor%>
+				</div><!--/flavor-->
+				
+				<div class="vote">
+				<div class="clearer"></div>
+					<div style="float: left;">
+						<% form_for :vote, @vote, :url => { :controller => 'vote', :action => 'create'} do |f| %>
+							<%= f.hidden_field :look_id, :value => @look.id %>
+							<%= f.select(:score, {"YES" => "1", "NO" => "0"} )%>
+							<%= submit_tag 'Rate' %>
+						<% end %>
+						<span id="favorite_status"><%= link_to_remote('Favorite', :url => { :controller => 'favorites', :action => 'add', :item_type => 'Look', :item_id => @look.id}) %>?</span>
+					</div>
+				<div class="clearer"></div>
+				</div><!--/vote-->
+				
+			<div class="clearer"></div>
+			</div><!--/tab-->
+			
+			<div class="clearer"></div>
+			
+			<div class="display">
+				<div class="image"><%= image_tag(@photo.public_filename(:feature), :class => "pic", :alt => @look.title) %></div>
+			</div><!--/display-->
+			
+			<div class="clearer"></div>
+			<div class="sender" style="vertical-align:top;">
+				<strong><%= @look.title %></strong> sent in by
+				<% if @look.user != nil%> 
+					<%= link_to(@look.user.login, profile_url(:user_id => @look.user.login)) %>
+				<% else %>
+					anonymous
+				<% end %>about <%= distance_of_time_in_words(@look.created_at, Time.now) %> ago.<br/><br/>
+				<%= render :partial => 'tags/taglist', :locals => { :look => @look }%>
+			</div>
+			
+		<div class="clearer"></div>
+		</div><!--item-view-->
+	</td></tr>
+	</table>
+	</div>
+<div class="clearer"></div>	
+</div><!--/boxitem-->
+
+<div class="clearer"></div>
+
+<div style="width: 655px; margin:auto; margin-top: 15px;">
+<div class="clearer"></div>
+	<div style="width: 300px; float: left;">
+	<!-- comments goes here -->
+	<%= render :partial => 'look/comments', :locals => {:comments => @look.comments}  %>
+	</div>
+	<div class="boxside" style="margin-top: 10px; width: 300px;">
+		<%= render :partial => 'look/photos', :locals => {:photos => @look.photos} %>
+	</div>
+<div class="clearer"></div>
+</div>

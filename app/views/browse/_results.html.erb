@@ -1,0 +1,16 @@
+<div id="results">
+	<%= will_paginate @looks %>
+	<div class="clear"></div>	
+	<% for look in @looks %>
+	<div class="item">
+		<div class="score">
+			<%= percentage(look) %><span>%</span>
+		</div>
+		<div class="image">
+			<%= link_to(photo_for(look, :mini), :controller => 'look', :action => 'view', :id => look.id) %>
+		</div>
+		<%= look.title %><br/>
+		Submitted <%= distance_of_time_in_words(look.created_at, Time.now) %> ago
+	</div>
+	<% end %>
+</div>

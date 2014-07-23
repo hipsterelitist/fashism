@@ -1,0 +1,14 @@
+<div id="look_browser">
+	<%= link_to_remote('#', :url => {:controller => 'browse', :action => 'recent', :page => looks.previous_page}, :html => { :class => 'browser_left' })%>
+<div class="ie_carousel">
+<div class="carousel">
+		<% for look in looks %>
+	 	<div>
+			<%= link_to(photo_for(look, :mini), :controller => 'look', :action => 'view', :id => look.id)%>
+	 		<p class="rating"><%= percentage(look) %><span>%</span></p>
+	 	</div>
+	 	<% end %>
+</div>
+</div>
+	<%= link_to_remote('#', :url => {:controller => 'browse', :action => 'recent', :page => looks.next_page}, :html => { :class => 'browser_right' })%>
+</div>

@@ -1,0 +1,13 @@
+<div id = "gallery_items">
+<% for look in @gallery.gallery_items %>
+	<span id="<%=look.id%>">
+	<%= link_to(image_tag(look.default_photo.public_filename(:thumb)), :controller => 'look', :action => 'edit', :id => look.look_id) %> - 	<%= link_to_remote("Remove", :url => {:controller => 'galleries', :action => 'remove', :gallery => @gallery.id, :look => look.look_id}) %> | <%= link_to_remote("Make Default", :url => {:controller => 'galleries', :action => 'default', :gallery => @gallery.id, :look => look.look_id}) %></span><br/>
+<% end %>
+</div>
+<p>
+	<% for look in @current_user.recent_looks(15)%>
+		<div style="display:inline;" id="add_look-<%=look.id%>"><%= photo_for(look, :tiny) %>
+		<br/>
+		<%= link_to_remote("Add", :url => {:controller => 'galleries', :action => 'add', :gallery => @gallery.id, :look => look.id }) %><br/><br/>
+		</div>
+	<% end %></p>

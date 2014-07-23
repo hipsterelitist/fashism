@@ -1,0 +1,34 @@
+<% @page_title = "User Settings"%>
+<% form_for :user, @user, :url => {:action => "update"} do |f| %>
+	<div style="width:450px;">
+	<h2>Notification Settings</h2>
+	<table cellpadding="5"><tr><td>
+	<label for="vote_notify">Votes: </label></td<td style="text-align:right;">
+	<%= f.text_field :vote_notification, :size => 5 %></td><td style="vertical-align:bottom;"><b>We'll send your look scores to you after a certain number of votes...</b>
+	(enter 0 if you never ever want to hear about it...)</td></tr>
+	<tr><td><label for="vote_comment">Comments: </label></td><td style="text-align:right">
+	Yes: <%= f.check_box :comment_notification %></td><td><b>Check this if you'd like to be notified when you receive a comment.</b></td></tr>
+	</table>
+	 <%= f.submit "Update", :class => "submit" %>
+	</div>
+<% end %>
+<br/><hr/><br/>
+<h2>Change Password</h2>
+<% form_for(:user, :url => user_password_path(@user), :html => { :method => :put }) do |f| %>
+
+<table><tr><td>
+      <label for="password">Old Password</label></td>
+	 <td><%= password_field_tag :old_password %></td>
+	</tr><tr>
+		<td><label for="password">New Password</label></td>
+    	<td><%= f.password_field :password %></td>
+	</tr><tr>
+		<td><label for="password_confirmation">Confirm Pass</label></td>
+    	<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+</table>
+
+      <%= f.submit "Change", :class => "submit" %> or <%= link_to 'Cancel', :controller => 'welcome', :action => 'index' %>
+
+<% end %>
+</div>

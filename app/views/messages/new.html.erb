@@ -1,0 +1,30 @@
+<% @page_title = "Send them a message!" %>
+<div id="receiver_list" style="float:right;width:200px"></div>
+<div class="content">
+	<div class="compose_message" style="width:400px;padding: 10px;">
+	<% form_for(@message, :url => {:action => "create"}) do |f| %>
+
+		<div class="field">
+			<label for ="receiver">To</label>
+			<%= text_field_tag :receiver, @receiver.to_s %>
+		</div>
+		<%= observe_field(:receiver, 
+						 :frequency => 0.5, 
+						 :update => :receiver_list, 
+						 :url => { :action => :user_list},
+						 :with => "user_name")%>
+		<div class="field">
+			<label for="subject">Subject</label>
+			<%= f.text_field :subject %>
+		</div>
+		<div class="field">
+			<label for="body">Message</label>
+			<%= f.text_area :body%>
+		</div>
+		<%= f.hidden_field :parent_id %>
+		<div class="submit">
+			<%= submit_tag 'Send' %>
+		</div>
+	<% end %>
+	</div>
+</div>

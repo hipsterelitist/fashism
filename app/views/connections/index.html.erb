@@ -1,0 +1,9 @@
+<% @page_title = @current_user.login.to_s + "'s Contacts"%>
+
+Following<br/>
+
+<%= render :partial => 'connections/contacts', :locals => { :contacts => @contacts }%>
+
+Followers<br/>
+
+<%= render :partial => 'connections/contacts', :locals => { :contacts => @followers }%>

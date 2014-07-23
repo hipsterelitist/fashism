@@ -1,0 +1,22 @@
+login: &login
+  adapter: mysql
+  host: localhost
+  username: fashist_pig
+  password: foofoo
+
+development:
+  database: fashion_dev
+  <<: *login
+
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  database: fashion_test
+  <<: *login
+
+
+production:
+  database: fashion_pro
+  <<: *login

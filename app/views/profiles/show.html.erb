@@ -1,0 +1,70 @@
+<% @page_title = @profile.name + "'s profile" %>
+<div class="content">
+<h3><%= @profile.login %> - <%= @profile.phrase%></h3>
+	<%= render :partial => 'connections/follow', :locals => { :user => @profile.user }%>
+	<center>
+	<%= image_tag(@profile.user.profile_photo) %>
+	</center><p>
+	<b><%= @profile.name %>'s brief biography</b>: <%= @profile.bio %><br/><br/>	
+	<b><%= @profile.login %></b> has been voted helpful <%= @profile.user.helpful %> times, and snarky <%= @profile.user.snark %> times.</p>
+</div>
+	
+	
+<% if @recent_looks.size > 0%>	
+	<div class="boxlist">
+		<div align="left">
+			<h3>Recent Looks:</h3>
+		<table border="0" width="750" cellspacing="0" cellpadding="0"><tr><td align="center">
+	<% for look in @recent_looks%>
+	<div class="item">
+		<div class="frame">
+		<table height="132" border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+			<div class="display">
+				<div class="image">
+					<%= link_to(photo_for(look, :thumb), :controller => 'look', :action => 'view', :id => look.id) %>
+				</div>
+				<div class="rating"><%= percentage(look) %></div>
+			</div>
+		</td></tr>
+		</table>
+		</div><!--/frame-->
+		<div class="tab">
+		<div class="clearer"></div>
+			<div class="info"><%= look.title %></div>
+		<div class="clearer"></div>
+		</div><!--/tab-->
+	</div>	<% end %></td></tr><table>
+		</div>
+		</div>
+	<% end %>
+<% if @top_looks.size > 0 %>
+	<div class="boxlist">
+	<div align="left">
+		<h3>Top Looks:</h3>
+			<table border="0" width="750" cellspacing="0" cellpadding="0"><tr><td align="center">
+			<% for look in @top_looks%>
+			<div class="item">
+				<div class="frame">
+				<table height="132" border="0" cellspacing="0" cellpadding="0">
+				<tr><td>
+					<div class="display">
+						<div class="image">
+							<%= link_to(photo_for(look, :thumb), :controller => 'look', :action => 'view', :id => look.id) %>
+						</div>
+						<div class="rating"><%= percentage(look) %></div>
+					</div>
+				</td></tr>
+				</table>
+				</div><!--/frame-->
+				<div class="tab">
+				<div class="clearer"></div>
+					<div class="info"><%= look.title %></div>
+				<div class="clearer"></div>
+				</div><!--/tab-->
+			</div>
+			<% end %>
+			</td></tr></table>
+	</div>
+	</div>
+<% end %>

@@ -1,0 +1,5 @@
+for tag in @tags
+  page.remove tag.to_s.gsub(/[ ' <>']/, '')
+end
+  page.visual_effect :highlight, "taglist", :duration => 2
+

@@ -1,0 +1,9 @@
+<div style="float:right;display:inline;">
+	<%= percentage(look) %>
+</div>
+<%= link_to(image_tag(look.default_photo.public_filename(:tiny)), :controller => 'look', :action => 'view', :id => look.id )%>
+<% form_for :comment, :url => {:controller => 'comments', :action => 'create'} do |f| -%>
+		<%= f.text_area :body, :cols => 15 %>
+		<%= hidden_field(:look, :id) %>
+		<%= f.submit 'Add' %>
+<% end %>

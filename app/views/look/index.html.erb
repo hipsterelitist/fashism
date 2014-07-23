@@ -1,0 +1,14 @@
+<% @page_title = "We've got the #{@user.nil? ? '' : @user.login} looks..."%>
+<div style="display:block;clear:both;position:relative;height:100%;padding:5px;min-height:500px;margin:auto;width:90%">
+<b>Top:</b><br/><br/>
+	<% for look in @hottest%>
+	<div style="float:left;width:130px;height:200px;margin-left:10px;margin-bottom:10px;text-align:center;">
+		<div style="position:relative;">
+			<%= link_to(photo_for(look, :mini), :controller => 'look', :action => 'view', :id => look.id)%><br/><span style="font-size:10px;position:relative;text-align:center;">look by <%= link_to(look.user.login, user_looks_path(:user_id => look.user.login)) %></span>
+		</div>
+	</div>
+	<% end %>
+</div>	<div class="clear"></div>
+
+
+

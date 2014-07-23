@@ -1,0 +1,19 @@
+<head>
+<%= stylesheet_link_tag "admin" %>
+<title>Fashism: <%= @page_title || "Fashion Admin Panel" %></title>
+</head>
+<body>
+	<div class="logo"><%= link_to(image_tag("mark.png"), :controller => "admin", :action => "action") %>
+	</div>
+	<% if flash[:warning] != nil %>
+		<div class="flash_warning"><%= flash[:warning] %></div>
+	<% end%>
+	<% if flash[:notice] != nil %>
+		<div class="flash_notice"><%= flash[:notice] %></div>
+	<% end%>
+	<div class="recent"></div>
+	<div class="content_main">
+		<%= @content_for_layout %>
+	</div>
+
+</body>

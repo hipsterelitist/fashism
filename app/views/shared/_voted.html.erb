@@ -1,0 +1,20 @@
+<div class="recently_voted">
+	<%= image_tag("recently_voted.gif", :class => "trigger")%>
+  <div class="popup">
+	<div id="popup_content" class="pop_content">
+		<% look_id = session[:voting].last%>
+		<% @voted_look = Look.find(look_id)%>
+<div style="float:right;display:inline; background-color:#FF545B;color:#FFFFFF;font-size:15px;font-weight:bold;padding:2px;">
+				<%= percentage(@voted_look) %>
+		</div>
+		<%= link_to(image_tag(@voted_look.default_photo.public_filename(:tiny)), :controller => 'look', :action => 'view', :id => @voted_look.id )%><p>
+		<% remote_form_for :comment, :url => {:controller => 'comments', :action => 'create'} do |f| -%>
+				<%= f.text_area :body, :width => 15 %>
+				<%= hidden_field(:voted_look, :id) %>
+				<p style="text-align:center"><%= f.submit 'Comment' %></p>
+		<% end %></p>
+	</div>
+  </div>
+</div>
+
+

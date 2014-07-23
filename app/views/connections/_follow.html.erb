@@ -1,0 +1,13 @@
+<% if !@current_user.nil? %>
+	<span id="follow-button-<%=user.login.to_s%>">
+	<% if @current_user.id != user.id %>
+		<% if @current_user.following?(user) %>
+			<%= link_to_remote(image_tag("unfollow.png"), :url => {:controller => 'connections', :action => 'unfollow', :user => user.login}) %>
+		<% else %>
+			<%= link_to_remote(image_tag("follow.png"), :url => {:controller => 'connections', :action => 'follow', :user => user.login}) %>
+		<% end %>
+		</span><br/>
+	<% end %>
+<% end %>
+
+		

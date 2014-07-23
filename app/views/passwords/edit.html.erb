@@ -1,0 +1,22 @@
+<% @page_title = "Change Password"%>
+<div class="content">
+<p><b>So, you want to change your password, eh?</b></p>
+    <%= error_messages_for :user %>
+   	<% form_for(:user, :url => user_password_path(@user), :html => { :method => :put }) do |f| %>
+
+	<table><tr><td>
+          <label for="password">Old Password</label></td>
+		 <td><%= password_field_tag :old_password %></td>
+		</tr><tr>
+			<td><label for="password">New Password</label></td>
+        	<td><%= f.password_field :password %></td>
+		</tr><tr>
+			<td><label for="password_confirmation">Confirm Pass</label></td>
+        	<td><%= f.password_field :password_confirmation %></td>
+		</tr>
+	</table>
+
+          <%= f.submit "Update", :class => "submit" %> or <%= link_to 'Cancel', :controller => 'welcome', :action => 'index' %>
+
+    <% end %>
+</div>

@@ -1,0 +1,39 @@
+<% @page_title = "Join the Fashist Machine"%>
+<div class="content">
+	<div style="display: block; position: relative; float: right; clear: left;">
+		<%= error_messages_for :user %>
+		<br/>
+		<%= image_tag "catregister.jpg" %>
+	</div>
+	<div id="signup-form">
+		<% form_for :user, :url => users_path do |f| -%>
+			<div class="field">
+				<label for="login">Login</label>
+				<%= f.text_field :login %>
+			</div>
+			<div class="field">
+				<label for="email">Email</label>
+				<%= f.text_field :email %>
+			</div>
+			<div class="field">
+				<label for="password">Password</label>
+				<%= f.password_field :password %>
+				<label for="password_confirmation">Confirm Password</label>
+				<%= f.password_field :password_confirmation %>
+			</div>
+			<div class="field">
+				<label>Birthday</label>
+				<%= f.date_select(:birthday, :order => [:day, :month, :year], :start_year => 1940) %>
+			</div>
+			<div class="field">
+				<label for="zip">Zip</label>
+				<%= f.text_field :zip %>
+			</div>
+			<div class="submit">
+				<%= submit_tag 'Sign up' %>
+			</div>
+		<% end -%>
+		<p class="fine_print">By clicking Sign Up, you are indicating that you have read and agree to the <a href="http://www.fashism.com/user_agreement.html" rel="external">User Agreement</a> and <a href="http://www.fashism.com/privacy_policy.html" rel="external">Privacy Policy</a>.</p>
+	</div><!--/signup-form-->
+	<div class="clearer"></div>
+</div><!--/content-->

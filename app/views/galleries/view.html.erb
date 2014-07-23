@@ -1,0 +1,23 @@
+<% @page_title = @gallery.title %><br/><br/>
+<%= @gallery.description %><p>
+<table>
+	<tr valign="bottom">
+		<td>
+			<span id="<%= @feature_look.id %>"><%= link_to(image_tag(@feature_look.default_photo_url), :controller => 'look', :action => 'view', :id => @feature_look.look.id) %></span>
+		</td>
+		<td>
+ 			<span id="<%= @compare_look.id %>"><%= link_to(image_tag(@compare_look.default_photo_url), :controller => 'look', :action => 'view', :id => @feature_look.look.id) %></span>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">
+			<%= link_to_remote("Pass", :url => {:controller => 'galleries', :action => 'pass', :id => @gallery.id,  :passed => @feature_look.id, :stashed => @compare_look.id}) %>?
+		</td>
+		<td style="text-align:center;">
+			<%= link_to_remote("Pass", :url => {:controller => 'galleries', :action => 'pass', :id => @gallery.id, :passed => @compare_look.id, :stashed => @feature_look.id}) %>?
+		</td>
+	</tr>
+</table><p>
+<% for look in @looks %>
+	<%= link_to(image_tag(look.default_photo.public_filename(:tiny)), :action => 'view', :look_id => look.id) %>
+<% end %></p>

@@ -1,0 +1,13 @@
+<div id="flashes">
+<% if flash[:warning] != nil %>
+	<script type="text/javascript">
+	$.jGrowl("<%=  escape_javascript h(flash[:warning])%>", {theme: 'warning'});
+	</script>
+<% end%>
+<% if flash[:notice] != nil %>
+	<script type="text/javascript">
+	$.jGrowl("<%= escape_javascript h(flash[:notice]) %>", {theme: 'notice'});
+	</script>
+<% flash.discard %>
+<% end%>
+</div>

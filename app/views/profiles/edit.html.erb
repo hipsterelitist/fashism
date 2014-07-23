@@ -1,0 +1,49 @@
+<% @page_title = "Edit Profile"%>
+<div class="content">
+	<!--<h1> Editing your profile </h1>-->
+	<div style="padding: 10px;">
+	<% form_for :profile, @profile, :url => {:action => "update"} do |f| %>
+		<div class="field">
+			<label for="name">Name</label>
+			<%= f.text_field :name %>
+		</div>
+		<div class="field">
+			<label for="phrase">Catch-phrase</label>
+			<%= f.text_field :phrase %>
+		</div>
+		<div class="field">
+			<label for="bio">Bio</label>
+			<%= f.text_area :bio %>
+		</div>
+		<div class="field">
+			<label for="zip">Zip</label>
+			<%= f.text_field :zip %>
+		</div>
+		<div class="submit">
+			<%= f.submit "Update"%>
+		</div>
+		
+		<!--
+		<p>Name:</p><p> <%= f.text_field :name %></p>
+		<p>Catch-phrase:</p><p>  <%= f.text_field :phrase %></p>
+		<p>Bio:</p><p>  <%= f.text_area :bio %></p>
+		<p>Zip:</p><p>  <%= f.text_field :zip %></p>
+	
+		  <%= f.error_messages %>
+
+		  <p>
+		    <%= f.submit "Update" %>
+		  </p>
+		-->
+	<% end %>
+	</div>
+	<% if @profile.user.photo != nil %>
+		<%= image_tag(@profile.user.avatar)%> - <%= link_to_remote("Change your profile photo", :action => 'profile_photo_form') %>?
+	<% end %>
+	Upload a new profile photo
+	
+		<% form_for :profile_photo, @profile_photo, :method => 'post', :url => { :controller => 'photo', :action => "create_profile_photo"}, :html => { :multipart => true} do |f| %>
+		<%= file_field_tag :photo_file %>
+	<%= submit_tag %>
+	<% end %>
+</div>

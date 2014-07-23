@@ -1,0 +1,13 @@
+<% @page_title = "Password Recovery"%>
+<div class="content">
+    <% form_for(:password, :url => { :action => 'create' }) do |f| %>
+<table><tr>
+		  <td><label for="login">Username</label></td>
+          <td><%= text_field_tag 'login' %></div></td>
+		</tr><tr>
+         <td><label for="email">Email</label></td>
+          <td><%= text_field_tag 'email' %></div></td>
+		</tr></table>
+    <%= submit_tag 'Send Password', :class => "button-to" %>
+    <% end %>
+</div>

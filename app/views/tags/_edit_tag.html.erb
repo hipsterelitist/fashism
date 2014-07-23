@@ -1,0 +1,3 @@
+<span id="<%= edit_tag.to_s.gsub(/[ ' <>']/, '') %>">
+	<%= link_to_remote(edit_tag, :url => {:controller => 'tags', :action => 'remove_tags', :look_id => @look.id, :tags => edit_tag}) %>,
+</span>

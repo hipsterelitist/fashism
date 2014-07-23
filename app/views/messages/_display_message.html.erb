@@ -1,0 +1,11 @@
+<div class="message" id="<%= message.id %>">
+	<div class="message_info" style="float:left;margin-right:15px;width:75px;">
+		<%= link_to(message.sender.login, profile_url(:user_id => message.sender.login)) %><br/>
+		<span class="fine_print"><%= time_ago_in_words(message.created_at)%> ago</span><br/>
+		<%= image_tag(message.sender.avatar) %><br/>
+	</div>
+	<div class="message_body" style="float:left;min-height:100px;width:500px;border-bottom:1px;">
+		<%= message.body %>
+	</div><br/><div class="message_divider" style="background-color:#DDDDDD;height:1px;overflow:hidden;width:500px;margin-left:75px;"></div>
+	<div class="clearer"></div>
+</div>

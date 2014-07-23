@@ -1,0 +1,6 @@
+<% @page_title = "Sent Messages"%>
+<div class="content">
+	<% for message in @messages%>
+		<%= render :partial => 'message_link', :locals => { :message => message}%>
+	<% end %>
+</div>

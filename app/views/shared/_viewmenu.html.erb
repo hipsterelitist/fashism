@@ -1,0 +1,6 @@
+<% if 12 == 2 %>
+	<span id="gallery-add"><%= link_to_remote("Add to gallery", 
+	:url => { :controller => 'gallery', :action => 'selector', :id => @look.id }) %></span>
+<% elsif 12 == 3 %>
+	This look is currently featured in <%= link_to(@look.gallery.title, :controller => 'gallery', :action => 'view', :id => @look.gallery.id) %>
+<% end %>

@@ -1,0 +1,9 @@
+<table id="contacts">
+	<tbody>
+<% for result in @results %>
+<tr id="<%= result.login.to_s %>">
+	<td><%= image_tag(result.icon) %></td><td><%= result.login.to_s %></td>
+</tr>
+<% end %>
+	</tbody>
+</table>

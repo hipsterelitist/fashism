@@ -1,0 +1,1 @@
+page.replace_html "follow-button", "You are no longer following this user."

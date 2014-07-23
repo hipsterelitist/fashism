@@ -1,0 +1,6 @@
+<div id="angles">
+	<%= image_tag("../images/layout/angles.png") %><br/>
+	<% for photo in photos %>
+		<%= link_to(image_tag(photo.public_filename(:thumb), :style => "float:left;margin-top:10px;margin-left:30px;"), :id => @look.id, :pid => photo.id)%>
+	<% end %>
+</div>

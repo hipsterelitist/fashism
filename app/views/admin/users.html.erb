@@ -1,0 +1,9 @@
+<table><tr><td>ID</td><td>Title</td><td>Edit</td><td>Destroy [CAN'T BE UNDONE!]</td></tr>
+<% for user in @users %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= link_to(user.login, profile_url(:user_id => user.login) %></td>
+		<td>Edit</td>
+		<td><%= link_to("Destroy", :action => 'destroy_user', :destroy_id => user.id) %></td>
+	</tr>
+<% end %>

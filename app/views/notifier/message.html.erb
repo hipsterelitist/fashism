@@ -1,0 +1,14 @@
+Hey <%= @receiver.login%>,<br/><br/>
+
+
+<%= @sender.login %> sent you a new message.  It went a little something like this:<br/><br/>
+<i><%= @message.body%></i><br/>
+
+Send them a <%= link_to("reply", :controller => 'messages', :action => 'view', :id => @message.id, :only_path => false, :host => 'www.fashism.com') %> and tell them what's what.<br/><br/>
+
+
+Cheers,<br/>
+Fashism Staff.<br/><br/>
+
+--<br/>
+You can change your notification settings by <%= link_to("logging in", :controller => 'session', :action => 'new', :only_path => false, :host => "www.fashism.com") %> and using the <%= link_to("settings", "http://www.fashism.com/settings" ) %> page.

@@ -1,0 +1,23 @@
+<div id="look_browser" style="position:relative;z-index:2;width:875px;height:155px;overflow:hidden;margin:auto;text-align:center;">
+		<div class="browser_previous" style="float:left;position:relative;top:27px;">
+			<%= link_to_remote(image_tag('../images/layout/browser_previous.png'), :url => {:controller => 'browse', :action => 'recent', :page => looks.previous_page})%>
+		</div>
+		<div class="browser_next" style="display:inline;float:right;position:relative;top:27px;">
+			<%= link_to_remote(image_tag('../images/layout/browser_next.png'), :url => {:controller => 'browse', :action => 'recent', :page => looks.next_page })%>
+		</div>
+		<div style="height:155px;width:815px;line-height:155px;background-color:#fff;margin:auto;border:1px solid #000;white-space:nowrap;position:absolute;top:0;left:29px;">
+		<ul style="overflow:hidden;white-space:nowrap;list-style-image:none;list-style-position:outside;list-style-type:none;background-color:#333;height:130px;padding-top:8px;position:relative;bottom:10px;" id="item_list">
+	<% for look in looks %>
+		<li style="display:inline;">
+			<div class="browser_image" style="position:relative;float:left;margin-bottom:20px;display:inline;border:1px solid #fff;background-color:#333;">
+			<%= link_to(photo_for(look, :mini), :controller => 'look', :action => 'view', :id => look.id)%>
+				<span class="score" style="font-family:georgia;font-size:15px;color:#9C0015;position:absolute;height:30px;width:30px;top:10px;right:5px;border:1px dashed #9C0015;background-color:#fff;text-align:center;line-height:30px;">
+					<%= percentage(look) %>
+				</span>
+			</div>
+		</li>
+	<% end %>
+	</ul>
+	</div>
+</div>
+<div class="clear"></div>

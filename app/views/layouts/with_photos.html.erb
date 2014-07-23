@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Fashism: <%= @page_title || "Fashion 2.1" %></title>
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "dropdown" %>
+<%= stylesheet_link_tag "jquery.jgrowl" %>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "jquery.jgrowl" %>
+
+<link rel="shortcut icon" href="/images/favicon.gif" />
+</head>
+<body>
+
+	<div id="wrapper">
+	<div class="clearer"></div>
+	<div id="header">
+		<div class="nw"><div class="ne"><div class="sw"><div class="se">
+			<div class="row">
+			<div class="clearer"></div>
+				<div id="mark">
+					<%= link_to(image_tag("mark.png"), :controller => "welcome", :action => "index") %>
+				</div><!--/mark-->
+				<div id="login-tab">	
+					<% if current_user == nil%>
+						<%= render :partial => 'sessions/new' %>
+					<% else %>
+						Logged in as <%= current_user.login %>. <%= link_to("Not you", logout_path) %>?
+					<% end %>
+				</div><!--/login-->
+			<div class="clearer"></div>
+			</div><!--/row-->
+		</div></div></div></div>
+	</div><!--/header-->
+	<div id="nav">
+	<div class="sw"><div class="se">
+	<div class="clearer"></div>
+		<ul id="menu">
+			<li><%= link_to("recently added", {:controller => "browse", :action => "index", :sort => "recent"}) %></li>
+			<li><%= link_to("hot looks", { :controller => "browse", :action => "index", :sort => "top"}) %></li>
+			<% if current_user == nil %>
+				<li style="float: right"><%= link_to("sign up", {:controller => "users", :action => "new"}) %></li>
+			<% else %>
+				<li style="float: right"><%= link_to("Logout", logout_path) %></li>
+			<% end %>
+			<% if current_user != nil %>
+				<%= render :partial => 'shared/dropmenu' %>
+			<% end %>
+		</ul><!--/menu-->
+	<div class="clearer"></div>
+	</div></div>
+	</div><!--/nav-->
+	
+	<div class="title">
+	<div class="nw"><div class="ne"><div class="sw"><div class="se">
+	<div class="clearer"></div>
+		<div class="inner"><%= @page_title || "Placeholder" %></div>
+	<div class="clearer"></div>
+	</div></div></div></div>
+	</div><!--/title-->
+	
+	<div id="container">
+	<div class="clearer"></div>
+		<div class="col-1">
+			<!-- div for main content that will be shown with photos -->
+			<%= @content_for_layout %>
+		</div><!--/col-1-->
+		<div class="boxside">
+		<div class="clearer"></div>
+			<!-- partial for photos, should be shared/recent... see default layout-->
+			<%= render :partial => 'shared/recent' %>
+		<div class="clearer"></div>
+		</div><!--/boxside-->
+	<div class="clearer"></div>
+	</div><!--/container-->
+	
+	<%= render :partial => 'shared/footer' %>
+
+	
+	<div class="clearer"></div>
+	</div><!--/wrapper-->
+	<!-- uservoice feedback -->
+	<script src="http://fashism.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=00baff" type="text/javascript"></script>
+	<% if !session[:voting].nil? %>
+		<%= render :partial => 'shared/voted' %>
+	<% end %>
+	<!-- notification -->
+	<% if flash[:warning] != nil %>
+		<script type="text/javascript">
+		$.jGrowl("<%=  escape_javascript h(flash[:warning])%>", {theme: 'warning'});
+		</script>
+	<% end%>
+	<% if flash[:notice] != nil %>
+		<script type="text/javascript">
+		$.jGrowl("<%= escape_javascript h(flash[:notice]) %>", {theme: 'notice'});
+		</script>
+	<% end%>
+	<!-- analytics -->
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-6152273-1");
+	pageTracker._trackPageview();
+	</script>
+</body>
+</html>
